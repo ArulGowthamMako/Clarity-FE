@@ -69,9 +69,9 @@ const CreateEditTaskPopUp: React.FC<CreateEditTaskPopUpProps> = ({
 
   const { mutate: editTaskMutate } = useMutation(updateTask, {
     onSuccess: () => {
-      toast.info("Task Updated Successfully!");
       reset();
       closeEdit({ id: "", status: false });
+      toast.info("Task Updated Successfully!");
       queryClient.invalidateQueries("getTasks");
     },
     onError: (err: any) => {
@@ -203,7 +203,11 @@ const CreateEditTaskPopUp: React.FC<CreateEditTaskPopUpProps> = ({
                     render={({ field }) => (
                       <DatePicker
                         placeholderText="Select Due Date"
-                        onChange={(date) => field.onChange(date)}
+                        onChange={(date) =>
+                          field.onChange(
+                            date ? date.toISOString().split("T")[0] : ""
+                          )
+                        }
                         selected={field.value ? new Date(field.value) : null}
                         customInput={<CustomInput />}
                         dateFormat="yyyy-MM-dd"

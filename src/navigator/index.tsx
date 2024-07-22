@@ -10,7 +10,6 @@ const AppNavigator = () => {
     <Suspense fallback={<Spinner />}>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/" element={<PrivateRoute />}>
           <Route path="/dashboard" element={<Dashboard />} />
         </Route>

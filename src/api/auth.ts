@@ -6,5 +6,5 @@ export interface ILoginForm {
 }
 
 export const loginUser = async (payload: ILoginForm): Promise<any> => {
-  return API.post("users/login", payload);
+  return API.post("login", payload);
 };

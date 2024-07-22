@@ -44,7 +44,6 @@ const Login = () => {
       toast.error("Invalid credentials");
     },
     onSuccess: (data: { access_token: string }) => {
-      console.log("access_token :>> ", data);
       login(data?.access_token);
       navigate("/dashboard");
     },
@@ -58,10 +57,6 @@ const Login = () => {
       mutate({ email, password });
     }
   };
-
-  useEffect(() => {
-    logout();
-  }, [logout]);
 
   return (
     <Flex

@@ -12,8 +12,9 @@ import {
   FormControl,
   InputRightElement,
   Text,
+  Spinner,
 } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { FaUserAlt, FaLock } from "react-icons/fa";
 import { ILoginForm, loginUser } from "../api/auth";
@@ -25,7 +26,7 @@ const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
 
 const Login = () => {
-  const { login, logout } = useAuth();
+  const { login } = useAuth();
   const {
     register,
     handleSubmit,
@@ -57,6 +58,21 @@ const Login = () => {
       mutate({ email, password });
     }
   };
+
+  if (isLoading) {
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "40rem",
+        }}
+      >
+        <Spinner />
+      </div>
+    );
+  }
 
   return (
     <Flex

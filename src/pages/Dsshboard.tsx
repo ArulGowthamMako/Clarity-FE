@@ -16,7 +16,6 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
-import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { getTasks } from "../api/dashboard";
 import CreateEditTaskPopUp from "./CreateEditTaskPopUp";
@@ -31,11 +30,7 @@ interface Task {
 }
 
 const Dashboard = () => {
-  const [searchParams] = useSearchParams();
-  const { pathname } = useLocation();
-  const navigate = useNavigate();
-  const currentPage = searchParams.get("page") || "1";
-  const [page, setPage] = useState<number>(+currentPage);
+  const [page, setPage] = useState<number>(1);
   const [openPopUp, setOpenPopUp] = useState<boolean>(false);
   const [editMode, setEditMode] = useState<{ id: string; status: boolean }>({
     id: "",
@@ -57,24 +52,19 @@ const Dashboard = () => {
     }
   );
 
-  const handlePreviousPage = () => {
-    if (data?.data?.prev_page_url) {
-      const newPage = page - 1;
-      setPage(newPage);
-      navigate(`${pathname}?page=${newPage}`);
-    }
-  };
-
-  const handleNextPage = () => {
-    if (data?.data?.next_page_url) {
-      const newPage = page + 1;
-      setPage(newPage);
-      navigate(`${pathname}?page=${newPage}`);
-    }
-  };
-
   if (isLoading) {
-    return <Spinner />;
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "40rem",
+        }}
+      >
+        <Spinner />
+      </div>
+    );
   }
 
   return (
@@ -109,7 +99,7 @@ const Dashboard = () => {
       </HStack>
       <Stack borderTopRadius="0.5rem" bgColor="white">
         <Heading fontSize="1rem" color="black.400" p="0.8rem">
-          Users
+          Tasks
         </Heading>
       </Stack>
       <TableContainer bgColor="white" w="100%" h="100%">
@@ -184,8 +174,9 @@ const Dashboard = () => {
             w="6rem"
             colorScheme="teal"
             variant="outline"
-            onClick={handlePreviousPage}
-            isDisabled={!data?.data?.prev_page_url}
+            onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+            isDisabled={!data?.prev_page_url}
+            key={`prev-${page}`}
           >
             Previous
           </Button>
@@ -193,8 +184,9 @@ const Dashboard = () => {
             w="6rem"
             colorScheme="teal"
             variant="outline"
-            onClick={handleNextPage}
-            isDisabled={!data?.data?.next_page_url}
+            onClick={() => setPage((prev) => prev + 1)}
+            isDisabled={!data?.next_page_url}
+            key={`next-${page}`}
           >
             Next
           </Button>

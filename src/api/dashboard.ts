@@ -1,6 +1,6 @@
 import { API } from ".";
 
-interface ITask {
+export interface ITask {
   title: string;
   description: string;
   status: string;
@@ -22,7 +22,7 @@ export const createTasks = async (payload: ITask): Promise<any> => {
   return API.post("tasks", payload);
 };
 
-export const UpdateTask = async (payload: ITask): Promise<any> => {
+export const updateTask = async (payload: ITask): Promise<any> => {
   return API.post(`tasks/${payload.id}`, payload);
 };
 

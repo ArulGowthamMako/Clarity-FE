@@ -1,25 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Provider } from "react-redux";
+import { ChakraProvider } from "@chakra-ui/react";
+import store from "./store";
+import AppNavigator from "./navigator";
+import { BrowserRouter } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+import { AuthProvider } from "./navigator/AuthProvider";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 function App() {
+  const queryClient = new QueryClient();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <QueryClientProvider client={queryClient}>
+        <ChakraProvider>
+          <BrowserRouter>
+            <AuthProvider>
+              <ToastContainer />
+              <AppNavigator />
+            </AuthProvider>
+          </BrowserRouter>
+        </ChakraProvider>
+      </QueryClientProvider>
+    </Provider>
   );
 }
 

@@ -10,6 +10,12 @@ In the project directory, you can run:
 
 To install all the necessary npm packages.
 
+### `Changes in .env file`
+
+Before running the application, add the necessary backend endpoint in the .env file with the following line:
+
+`REACT_APP_API_URL="YOUR_ENDPOINT"` Replace YOUR_ENDPOINT with your actual backend URL.
+
 ### `npm start`
 
 Runs the app in the development mode.\

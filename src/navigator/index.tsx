@@ -3,7 +3,7 @@ import Login from '../pages/Login';
 import PrivateRoute from './PrivateRoute';
 import { Suspense } from 'react';
 import { Spinner } from '@chakra-ui/react';
-import Dashboard from '../pages/Dsshboard';
+import Task from '../pages/Tasks';
 
 const AppNavigator = () => {
   return (
@@ -11,7 +11,7 @@ const AppNavigator = () => {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route element={<PrivateRoute />}>
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/tasks" element={<Task />} />
         </Route>
       </Routes>
     </Suspense>

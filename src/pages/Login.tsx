@@ -45,7 +45,7 @@ const Login = () => {
     },
     onSuccess: (data: { access_token: string }) => {
       login(data?.access_token);
-      navigate('/dashboard');
+      navigate('/tasks');
     },
   });
 

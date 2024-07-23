@@ -18,7 +18,7 @@ import {
 import { useEffect, useState } from 'react';
 import { useAuth } from '../navigator/AuthProvider';
 
-const DashboardLayout = ({
+const TasksLayout = ({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -120,4 +120,4 @@ const DashboardLayout = ({
   );
 };
 
-export default DashboardLayout;
+export default TasksLayout;

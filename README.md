@@ -6,6 +6,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+### `node -v`
+
+Before installing npm packages, ensure that your Node.js version is 18 or above.
+
 ### `npm install`
 
 To install all the necessary npm packages.

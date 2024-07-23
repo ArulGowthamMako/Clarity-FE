@@ -20,7 +20,12 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { CalendarIcon, CloseIcon } from '@chakra-ui/icons';
 import { toast } from 'react-toastify';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
-import { createTasks, getTaskById, ITask, updateTask } from '../api/dashboard';
+import {
+  createTasks,
+  getTaskById,
+  ITask,
+  updateTask,
+} from '../../api/dashboard';
 
 interface CreateEditTaskPopUpProps {
   close: (status: boolean) => void;

@@ -17,7 +17,7 @@ import {
 import { useState } from 'react';
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
 import { useQuery } from 'react-query';
-import { getTasks } from '../api/dashboard';
+import { getTasks } from '../api/tasks';
 import CreateEditTaskPopUp from '../components/Tasks/CreateEditTaskPopUp';
 import DeletePopUp from '../components/Tasks/DeletePopUp';
 import TasksLayout from '../layout/TasksLayout';

@@ -2,7 +2,7 @@ import React, { memo, useCallback } from 'react';
 import { Flex, Heading, Button, Stack, HStack, Text } from '@chakra-ui/react';
 import { useMutation, useQueryClient } from 'react-query';
 import { toast } from 'react-toastify';
-import { deleteTasks } from '../../api/dashboard';
+import { deleteTasks } from '../../api/tasks';
 
 interface DeletePopUpProps {
   close: (args: { id: string; status: boolean }) => void;

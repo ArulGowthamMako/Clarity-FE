@@ -88,7 +88,7 @@ const Dashboard = () => {
         )}
         <HStack mb="1rem" justifyContent="space-between">
           <Heading fontSize="1.5rem" color="black.400">
-            Dashboard
+            Tasks
           </Heading>
           <Button
             colorScheme="teal"

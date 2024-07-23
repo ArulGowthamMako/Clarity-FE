@@ -1,4 +1,4 @@
-import React, { memo, useEffect, forwardRef, useCallback } from "react";
+import React, { memo, useEffect, forwardRef, useCallback } from 'react';
 import {
   Flex,
   Heading,
@@ -13,14 +13,14 @@ import {
   HStack,
   Text,
   Textarea,
-} from "@chakra-ui/react";
-import { Controller, useForm } from "react-hook-form";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import { CalendarIcon, CloseIcon } from "@chakra-ui/icons";
-import { toast } from "react-toastify";
-import { useMutation, useQuery, useQueryClient } from "react-query";
-import { createTasks, getTaskById, ITask, updateTask } from "../api/dashboard";
+} from '@chakra-ui/react';
+import { Controller, useForm } from 'react-hook-form';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { CalendarIcon, CloseIcon } from '@chakra-ui/icons';
+import { toast } from 'react-toastify';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
+import { createTasks, getTaskById, ITask, updateTask } from '../api/dashboard';
 
 interface CreateEditTaskPopUpProps {
   close: (status: boolean) => void;
@@ -46,18 +46,18 @@ const CreateEditTaskPopUp: React.FC<CreateEditTaskPopUpProps> = ({
 
   const { mutate: createTaskMutate } = useMutation(createTasks, {
     onSuccess: () => {
-      toast.success("Task Created Successfully!");
+      toast.success('Task Created Successfully!');
       reset();
       close(false);
-      queryClient.invalidateQueries("getTasks");
+      queryClient.invalidateQueries('getTasks');
     },
     onError: (err: any) => {
-      toast.error(err?.response?.data?.message || "Something went wrong!");
+      toast.error(err?.response?.data?.message || 'Something went wrong!');
     },
   });
 
   const { data: getTaskByIdData } = useQuery(
-    ["getTasksById", edit.id],
+    ['getTasksById', edit.id],
     () => getTaskById(edit.id),
     {
       retry: false,
@@ -70,21 +70,21 @@ const CreateEditTaskPopUp: React.FC<CreateEditTaskPopUpProps> = ({
   const { mutate: editTaskMutate } = useMutation(updateTask, {
     onSuccess: () => {
       reset();
-      closeEdit({ id: "", status: false });
-      toast.info("Task Updated Successfully!");
-      queryClient.invalidateQueries("getTasks");
+      closeEdit({ id: '', status: false });
+      toast.info('Task Updated Successfully!');
+      queryClient.invalidateQueries('getTasks');
     },
     onError: (err: any) => {
-      toast.error(err?.response?.data?.message || "Something went wrong!");
+      toast.error(err?.response?.data?.message || 'Something went wrong!');
     },
   });
 
   useEffect(() => {
     if (getTaskByIdData) {
-      setValue("title", getTaskByIdData?.title);
-      setValue("description", getTaskByIdData?.description);
-      setValue("status", getTaskByIdData?.status);
-      setValue("due_date", getTaskByIdData?.due_date);
+      setValue('title', getTaskByIdData?.title);
+      setValue('description', getTaskByIdData?.description);
+      setValue('status', getTaskByIdData?.status);
+      setValue('due_date', getTaskByIdData?.due_date);
     } else {
       reset();
     }
@@ -145,19 +145,19 @@ const CreateEditTaskPopUp: React.FC<CreateEditTaskPopUpProps> = ({
       >
         <HStack w="100%" justifyContent="space-between">
           <Heading px="1rem" fontSize="24px" color="teal.400">
-            {!!!edit.id ? "Create Task" : "Edit Task"}
+            {!!!edit.id ? 'Create Task' : 'Edit Task'}
           </Heading>
           <CloseIcon
             mr="1rem"
             onClick={() => {
               close(false);
-              closeEdit({ id: "", status: false });
+              closeEdit({ id: '', status: false });
               reset();
             }}
             cursor="pointer"
           />
         </HStack>
-        <Box minW={{ base: "90%", md: "468px" }}>
+        <Box minW={{ base: '90%', md: '468px' }}>
           <form onSubmit={handleSubmit(submitCreateTask)}>
             <Stack
               spacing={4}
@@ -171,24 +171,24 @@ const CreateEditTaskPopUp: React.FC<CreateEditTaskPopUpProps> = ({
                   <Input
                     type="text"
                     placeholder="Title*"
-                    {...register("title", { required: "Title is required" })}
+                    {...register('title', { required: 'Title is required' })}
                   />
                 </InputGroup>
                 <Text color="red" fontSize="14px" ml="4px">
-                  {errors.title ? errors.title.message : ""}
+                  {errors.title ? errors.title.message : ''}
                 </Text>
               </FormControl>
               <FormControl>
                 <InputGroup>
                   <Textarea
                     placeholder="Description"
-                    {...register("description")}
+                    {...register('description')}
                   />
                 </InputGroup>
               </FormControl>
               <FormControl>
                 <InputGroup>
-                  <Select placeholder="Select status" {...register("status")}>
+                  <Select placeholder="Select status" {...register('status')}>
                     <option value="completed">Completed</option>
                     <option value="in-progress">In Progress</option>
                     <option value="pending">Pending</option>
@@ -203,9 +203,9 @@ const CreateEditTaskPopUp: React.FC<CreateEditTaskPopUpProps> = ({
                     render={({ field }) => (
                       <DatePicker
                         placeholderText="Select Due Date"
-                        onChange={(date) =>
+                        onChange={date =>
                           field.onChange(
-                            date ? date.toISOString().split("T")[0] : ""
+                            date ? date.toISOString().split('T')[0] : ''
                           )
                         }
                         selected={field.value ? new Date(field.value) : null}
@@ -220,7 +220,7 @@ const CreateEditTaskPopUp: React.FC<CreateEditTaskPopUpProps> = ({
                   />
                 </InputGroup>
                 <Text color="red" fontSize="14px" ml="4px">
-                  {errors.due_date ? errors.due_date.message : ""}
+                  {errors.due_date ? errors.due_date.message : ''}
                 </Text>
               </FormControl>
               <Button
@@ -230,7 +230,7 @@ const CreateEditTaskPopUp: React.FC<CreateEditTaskPopUpProps> = ({
                 colorScheme="teal"
                 width="full"
               >
-                {!!!edit.id ? "Create Task" : "Save Changes"}
+                {!!!edit.id ? 'Create Task' : 'Save Changes'}
               </Button>
             </Stack>
           </form>

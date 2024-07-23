@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import {
   Avatar,
@@ -14,9 +14,9 @@ import {
   Portal,
   Stack,
   Text,
-} from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import { useAuth } from "../navigator/AuthProvider";
+} from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
+import { useAuth } from '../navigator/AuthProvider';
 
 const DashboardLayout = ({
   children,
@@ -45,18 +45,18 @@ const DashboardLayout = ({
           <Stack
             flexDir="column"
             alignItems="center"
-            width={"10%"}
-            minW={"12rem"}
-            bgColor={"white"}
-            h={"100vh"}
-            padding={"1rem"}
-            justifyContent={"space-between"}
+            width={'10%'}
+            minW={'12rem'}
+            bgColor={'white'}
+            h={'100vh'}
+            padding={'1rem'}
+            justifyContent={'space-between'}
           >
-            <Box w={"100%"}>
+            <Box w={'100%'}>
               <Heading
-                w={"100%"}
-                display={"flex"}
-                justifyContent={"center"}
+                w={'100%'}
+                display={'flex'}
+                justifyContent={'center'}
                 color="teal.400"
               >
                 Logo
@@ -65,10 +65,10 @@ const DashboardLayout = ({
                 borderRadius={0}
                 type="submit"
                 variant="solid"
-                bgColor={"transparent"}
+                bgColor={'transparent'}
                 width="100%"
-                mt={"1.5rem"}
-                color={"gray"}
+                mt={'1.5rem'}
+                color={'gray'}
               >
                 Dashboard
               </Button>
@@ -76,22 +76,22 @@ const DashboardLayout = ({
             <Popover>
               <PopoverTrigger>
                 <Avatar
-                  mb={"1rem"}
+                  mb={'1rem'}
                   bg="teal.500"
-                  alignItems={"start"}
-                  cursor={"pointer"}
+                  alignItems={'start'}
+                  cursor={'pointer'}
                 />
               </PopoverTrigger>
               <Portal>
-                <PopoverContent ml={"1rem"} w={"10rem"} p={"0.5rem"}>
+                <PopoverContent ml={'1rem'} w={'10rem'} p={'0.5rem'}>
                   <PopoverCloseButton />
                   <PopoverBody>
-                    <Text fontWeight={"600"} fontSize={"18px"}>
+                    <Text fontWeight={'600'} fontSize={'18px'}>
                       Hi, User!
                     </Text>
                     <Button
-                      w={"100%"}
-                      mt={"0.4rem"}
+                      w={'100%'}
+                      mt={'0.4rem'}
                       colorScheme="teal"
                       onClick={logout}
                     >
@@ -107,8 +107,8 @@ const DashboardLayout = ({
             mb="2"
             justifyContent="center"
             alignItems="center"
-            width={"90%"}
-            h={"100%"}
+            width={'90%'}
+            h={'100%'}
           >
             {children}
           </Stack>

@@ -1,4 +1,4 @@
-import { API } from ".";
+import { API } from '.';
 
 export interface ITask {
   title: string;
@@ -19,7 +19,7 @@ export const deleteTasks = async (task_id: string): Promise<any> => {
 };
 
 export const createTasks = async (payload: ITask): Promise<any> => {
-  return API.post("tasks", payload);
+  return API.post('tasks', payload);
 };
 
 export const updateTask = async (payload: ITask): Promise<any> => {

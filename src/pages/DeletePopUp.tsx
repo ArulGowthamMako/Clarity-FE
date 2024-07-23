@@ -1,8 +1,8 @@
-import React, { memo, useCallback } from "react";
-import { Flex, Heading, Button, Stack, HStack, Text } from "@chakra-ui/react";
-import { useMutation, useQueryClient } from "react-query";
-import { toast } from "react-toastify";
-import { deleteTasks } from "../api/dashboard";
+import React, { memo, useCallback } from 'react';
+import { Flex, Heading, Button, Stack, HStack, Text } from '@chakra-ui/react';
+import { useMutation, useQueryClient } from 'react-query';
+import { toast } from 'react-toastify';
+import { deleteTasks } from '../api/dashboard';
 
 interface DeletePopUpProps {
   close: (args: { id: string; status: boolean }) => void;
@@ -14,12 +14,12 @@ const DeletePopUp: React.FC<DeletePopUpProps> = ({ close, id }) => {
 
   const { mutate: deleteMutate } = useMutation(deleteTasks, {
     onSuccess: () => {
-      toast.info("Task Deleted Successfully!");
-      close({ id: "", status: false });
-      queryClient.invalidateQueries("getTasks");
+      toast.info('Task Deleted Successfully!');
+      close({ id: '', status: false });
+      queryClient.invalidateQueries('getTasks');
     },
     onError: (err: any) => {
-      toast.error(err?.response?.data?.message || "Something went wrong!");
+      toast.error(err?.response?.data?.message || 'Something went wrong!');
     },
   });
 
@@ -61,7 +61,7 @@ const DeletePopUp: React.FC<DeletePopUpProps> = ({ close, id }) => {
             variant="outline"
             colorScheme="teal"
             width="full"
-            onClick={() => close({ id: "", status: false })}
+            onClick={() => close({ id: '', status: false })}
           >
             No, Cancel
           </Button>

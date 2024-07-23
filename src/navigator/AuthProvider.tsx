@@ -1,7 +1,7 @@
-import React, { ReactNode, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { login, logout } from "../store/authSlice";
-import { RootState } from "../store";
+import React, { ReactNode, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { login, logout } from '../store/authSlice';
+import { RootState } from '../store';
 
 interface AuthContextType {
   isAuthenticated: boolean;
@@ -39,7 +39,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 export const useAuth = (): AuthContextType => {
   const context = React.useContext(AuthContext);
   if (!context) {
-    throw new Error("useAuth must be used within an AuthProvider");
+    throw new Error('useAuth must be used within an AuthProvider');
   }
   return context;
 };

@@ -12,16 +12,15 @@ import {
   FormControl,
   InputRightElement,
   Text,
-  Spinner,
-} from "@chakra-ui/react";
-import { useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { FaUserAlt, FaLock } from "react-icons/fa";
-import { ILoginForm, loginUser } from "../api/auth";
-import { useAuth } from "../navigator/AuthProvider";
-import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
-import { useMutation } from "react-query";
+} from '@chakra-ui/react';
+import { useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { FaUserAlt, FaLock } from 'react-icons/fa';
+import { ILoginForm, loginUser } from '../api/auth';
+import { useAuth } from '../navigator/AuthProvider';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import { useMutation } from 'react-query';
 const CFaUserAlt = chakra(FaUserAlt);
 const CFaLock = chakra(FaLock);
 
@@ -40,13 +39,13 @@ const Login = () => {
 
   const { mutate, isLoading } = useMutation(loginUser, {
     retry: false,
-    onError: (error) => {
+    onError: error => {
       console.error(error);
-      toast.error("Invalid credentials");
+      toast.error('Invalid credentials');
     },
     onSuccess: (data: { access_token: string }) => {
       login(data?.access_token);
-      navigate("/dashboard");
+      navigate('/dashboard');
     },
   });
 
@@ -58,21 +57,6 @@ const Login = () => {
       mutate({ email, password });
     }
   };
-
-  if (isLoading) {
-    return (
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "40rem",
-        }}
-      >
-        <Spinner />
-      </div>
-    );
-  }
 
   return (
     <Flex
@@ -91,7 +75,7 @@ const Login = () => {
       >
         <Avatar bg="teal.500" />
         <Heading color="teal.400">Welcome</Heading>
-        <Box minW={{ base: "90%", md: "468px" }}>
+        <Box minW={{ base: '90%', md: '468px' }}>
           <form onSubmit={handleSubmit(submitLogin)}>
             <Stack
               spacing={4}
@@ -108,11 +92,11 @@ const Login = () => {
                   <Input
                     type="email"
                     placeholder="email address"
-                    {...register("email", { required: "Email is required" })}
+                    {...register('email', { required: 'Email is required' })}
                   />
                 </InputGroup>
-                <Text color={"red"} fontSize={"14px"} ml={"4px"}>
-                  {errors.email ? errors.email.message : ""}
+                <Text color={'red'} fontSize={'14px'} ml={'4px'}>
+                  {errors.email ? errors.email.message : ''}
                 </Text>
               </FormControl>
               <FormControl>
@@ -123,20 +107,20 @@ const Login = () => {
                     children={<CFaLock color="gray.300" />}
                   />
                   <Input
-                    type={showPassword ? "text" : "password"}
+                    type={showPassword ? 'text' : 'password'}
                     placeholder="Password"
-                    {...register("password", {
-                      required: "Password is required",
+                    {...register('password', {
+                      required: 'Password is required',
                     })}
                   />
                   <InputRightElement width="4.5rem">
                     <Button h="1.75rem" size="sm" onClick={handleShowClick}>
-                      {showPassword ? "Hide" : "Show"}
+                      {showPassword ? 'Hide' : 'Show'}
                     </Button>
                   </InputRightElement>
                 </InputGroup>
-                <Text color={"red"} fontSize={"14px"} ml={"4px"}>
-                  {errors.password ? errors.password.message : ""}
+                <Text color={'red'} fontSize={'14px'} ml={'4px'}>
+                  {errors.password ? errors.password.message : ''}
                 </Text>
               </FormControl>
               <Button

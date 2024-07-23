@@ -1,6 +1,6 @@
-import { Navigate, Outlet } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { RootState } from "../store";
+import { Navigate, Outlet } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store';
 
 const PrivateRoute = () => {
   const isAuthenticated = useSelector(

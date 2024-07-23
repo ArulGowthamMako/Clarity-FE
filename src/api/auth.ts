@@ -1,4 +1,4 @@
-import { API } from "./index";
+import { API } from './index';
 
 export interface ILoginForm {
   email: string;
@@ -6,5 +6,5 @@ export interface ILoginForm {
 }
 
 export const loginUser = async (payload: ILoginForm): Promise<any> => {
-  return API.post("login", payload);
+  return API.post('login', payload);
 };

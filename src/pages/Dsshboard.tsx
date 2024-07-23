@@ -13,14 +13,14 @@ import {
   HStack,
   Tooltip,
   Spinner,
-} from "@chakra-ui/react";
-import { useState } from "react";
-import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
-import { useQuery } from "react-query";
-import { getTasks } from "../api/dashboard";
-import CreateEditTaskPopUp from "./CreateEditTaskPopUp";
-import DeletePopUp from "./DeletePopUp";
-import DashboardLayout from "./DashboardLayout";
+} from '@chakra-ui/react';
+import { useState } from 'react';
+import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
+import { useQuery } from 'react-query';
+import { getTasks } from '../api/dashboard';
+import CreateEditTaskPopUp from './CreateEditTaskPopUp';
+import DeletePopUp from './DeletePopUp';
+import DashboardLayout from './DashboardLayout';
 
 interface Task {
   id: string;
@@ -34,19 +34,19 @@ const Dashboard = () => {
   const [page, setPage] = useState<number>(1);
   const [openPopUp, setOpenPopUp] = useState<boolean>(false);
   const [editMode, setEditMode] = useState<{ id: string; status: boolean }>({
-    id: "",
+    id: '',
     status: false,
   });
   const [openDeletePopUp, setOpenDeletePopUp] = useState<{
     id: string;
     status: boolean;
   }>({
-    id: "",
+    id: '',
     status: false,
   });
 
   const { data, isLoading } = useQuery(
-    ["getTasks", page],
+    ['getTasks', page],
     () => getTasks(page),
     {
       retry: false,
@@ -58,10 +58,10 @@ const Dashboard = () => {
       <DashboardLayout>
         <div
           style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "40rem",
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '40rem',
           }}
         >
           <Spinner />
@@ -77,12 +77,12 @@ const Dashboard = () => {
           <CreateEditTaskPopUp
             close={() => setOpenPopUp(false)}
             edit={editMode}
-            closeEdit={() => setEditMode({ id: "", status: false })}
+            closeEdit={() => setEditMode({ id: '', status: false })}
           />
         )}
         {openDeletePopUp.status && (
           <DeletePopUp
-            close={() => setOpenDeletePopUp({ id: "", status: false })}
+            close={() => setOpenDeletePopUp({ id: '', status: false })}
             id={openDeletePopUp.id}
           />
         )}
@@ -95,7 +95,7 @@ const Dashboard = () => {
             size="md"
             onClick={() => {
               setOpenPopUp(!openPopUp);
-              setEditMode({ id: "", status: false });
+              setEditMode({ id: '', status: false });
             }}
           >
             Create Task
@@ -178,7 +178,7 @@ const Dashboard = () => {
               w="6rem"
               colorScheme="teal"
               variant="outline"
-              onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
+              onClick={() => setPage(prev => Math.max(prev - 1, 1))}
               isDisabled={!data?.prev_page_url}
               key={`prev-${page}`}
             >
@@ -188,7 +188,7 @@ const Dashboard = () => {
               w="6rem"
               colorScheme="teal"
               variant="outline"
-              onClick={() => setPage((prev) => prev + 1)}
+              onClick={() => setPage(prev => prev + 1)}
               isDisabled={!data?.next_page_url}
               key={`next-${page}`}
             >
